@@ -1,6 +1,10 @@
 import React, { useState, useRef, useContext } from "react";
 import styled from "styled-components";
 import RecycleTypesList from "./screens/recycle-types/RecycleTypesList";
+import PickupPage from "./screens/pickup-page/PickupPage";
+import GoogleMap from "../map/GoogleMap";
+import RecicladorList from "./screens/reciclador-list/RecicladorList";
+
 import PointsCard from "./screens/points-card/PointsCard";
 import { Btn } from "../login/Login";
 import RecyclingIcon from "../icons/RecyclingIcon";
@@ -16,15 +20,15 @@ const pages = {
   },
   pickup: {
     name: "pickup",
-    component: <RecycleTypesList />,
+    component: <PickupPage />,
   },
   containers: {
     name: "containers",
-    component: <RecycleTypesList />,
+    component: <GoogleMap />,
   },
   recicladores: {
     name: "recicladores",
-    component: <RecycleTypesList />,
+    component: <RecicladorList />,
   },
 };
 

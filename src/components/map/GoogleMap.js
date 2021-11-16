@@ -12,6 +12,7 @@ const MapWrapper = styled.div`
 let map, infoWindow;
 
 function initMap() {
+  const containerLocationPos = { lat: 3.388571, lng: -76.541327 } 
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 3.388571, lng: -76.541327 },
     zoom: 17 ,
@@ -19,12 +20,28 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow();
 
   const locationButton = document.createElement("button");
+  const containerButton = document.createElement("button");
 
-  locationButton.textContent = "Pan to Current Location";
-  locationButton.classList.add("custom-map-control-button");
+  locationButton.textContent = "Mi ubicación";
+  locationButton.classList.add("map-recycle-container");
+
+  containerButton.textContent = "Ubicar contenedor";
+  containerButton.classList.add("map-recycle-container");
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(
     locationButton
   );
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+    containerButton
+  );
+
+  containerButton.addEventListener("click", () => {
+    console.log("[btn ubicar]")
+    infoWindow.setPosition(containerLocationPos);
+    infoWindow.setContent("CONTENEDOR CAPRI");
+    infoWindow.open(map);
+    map.setCenter(containerLocationPos);
+  });
+
   locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
