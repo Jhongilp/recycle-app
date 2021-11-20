@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import recicladoImage1 from "../../../images/reciclador1.png";
 import recicladoImage2 from "../../../images/reciclador2.png";
 import recicladoImage3 from "../../../images/reciclador3.png";
 
-const WrapperList = styled.div`
+import { RecicladorCard1, RecicladorCard2, RecicladorCard3 } from "./RecicladorCard";
+
+export const WrapperList = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -18,7 +20,7 @@ const WrapperList = styled.div`
   }
 `;
 
-const RecicladorCard = styled.div`
+export const RecicladorCard = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
@@ -29,7 +31,7 @@ const RecicladorCard = styled.div`
     rgb(175 181 186 / 30%) 0px -1px 6px 0px;
 `;
 
-const ProfilePic = styled.div`
+export const ProfilePic = styled.div`
   display: flex;
   width: 60px;
   height: 60px;
@@ -39,17 +41,17 @@ const ProfilePic = styled.div`
   }
 `;
 
-const ProfileDesc = styled.div`
+export const ProfileDesc = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
 
-const RecicladorList = () => {
+const RecicladorListMenu = ({ onSelect }) => {
   return (
     <WrapperList>
       <h1>Con ellos podrás programar la recogida de tu material reciclado!</h1>
-      <RecicladorCard>
+      <RecicladorCard onClick={() => onSelect("1")}>
         <ProfilePic>
           <img src={recicladoImage1} alt="perfil reciclador" />
         </ProfilePic>
@@ -58,7 +60,7 @@ const RecicladorList = () => {
           <span>ASOBOSUR</span>
         </ProfileDesc>
       </RecicladorCard>
-      <RecicladorCard>
+      <RecicladorCard onClick={() => onSelect("2")}>
         <ProfilePic>
           <img src={recicladoImage2} alt="perfil reciclador" />
         </ProfilePic>
@@ -67,7 +69,7 @@ const RecicladorList = () => {
           <span>ASOBOSUR</span>
         </ProfileDesc>
       </RecicladorCard>
-      <RecicladorCard>
+      <RecicladorCard onClick={() => onSelect("3")}>
         <ProfilePic>
           <img src={recicladoImage3} alt="perfil reciclador" />
         </ProfilePic>
@@ -77,6 +79,22 @@ const RecicladorList = () => {
         </ProfileDesc>
       </RecicladorCard>
     </WrapperList>
+  );
+};
+
+const recicladorInfoComponent = {
+  1: <RecicladorCard1 />,
+  2: <RecicladorCard2 />,
+  3: <RecicladorCard3 />,
+};
+
+const RecicladorList = () => {
+  const [recicladorSelected, setSelect] = useState(null);
+
+  return recicladorSelected ? (
+    recicladorInfoComponent[recicladorSelected]
+  ) : (
+    <RecicladorListMenu onSelect={setSelect} />
   );
 };
 

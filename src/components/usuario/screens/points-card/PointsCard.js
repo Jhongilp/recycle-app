@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Btn } from "../../../login/Login";
 
-const PointsCardWrapper = styled.div`
+export const PointsCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -11,7 +11,7 @@ const PointsCardWrapper = styled.div`
   background-color: #f3f3f3;
 `;
 
-const PointsDesc = styled.div`
+export const PointsDesc = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
@@ -44,7 +44,7 @@ const PointBtn = styled(Btn)`
   height: 100%;
 `;
 
-const PointsCard = () => {
+const PointsCard = ({onSelect}) => {
   return (
     <PointsCardWrapper>
       <PointsDesc>
@@ -54,8 +54,8 @@ const PointsCard = () => {
         </div>
       </PointsDesc>
       <PointsCommands>
-        <PointBtn>REDIMIR</PointBtn>
-        <PointBtn>DONAR</PointBtn>
+        {/* <PointBtn>REDIMIR</PointBtn> */}
+        <PointBtn onClick={() => onSelect("donar")}>DONAR</PointBtn>
         <PointBtn>SORTEAR</PointBtn>
       </PointsCommands>
     </PointsCardWrapper>

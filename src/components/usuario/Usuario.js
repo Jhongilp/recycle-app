@@ -4,6 +4,7 @@ import RecycleTypesList from "./screens/recycle-types/RecycleTypesList";
 import PickupPage from "./screens/pickup-page/PickupPage";
 import GoogleMap from "../map/GoogleMap";
 import RecicladorList from "./screens/reciclador-list/RecicladorList";
+import DonarPage from './screens/points-card/DonarPage'
 
 import PointsCard from "./screens/points-card/PointsCard";
 import { Btn } from "../login/Login";
@@ -30,9 +31,13 @@ const pages = {
     name: "recicladores",
     component: <RecicladorList />,
   },
+  donar: {
+    name: "donar",
+    component: <DonarPage />,
+  },
 };
 
-const UserPageWrapper = styled.div`
+export const UserPageWrapper = styled.div`
   display: flex;
   justify-content: center;
   /* align-items: center; */
@@ -40,7 +45,7 @@ const UserPageWrapper = styled.div`
   height: 100%;
 `;
 
-const UserHomeWrapper = styled.div`
+export const UserHomeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -48,7 +53,7 @@ const UserHomeWrapper = styled.div`
   height: 100%;
 `;
 
-const RecycleBtnContainer = styled.div`
+export const RecycleBtnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +63,7 @@ const RecycleBtnContainer = styled.div`
   margin: 40px 0;
 `;
 
-const RecycleBtn = styled(Btn)`
+export const RecycleBtn = styled(Btn)`
   flex-direction: column;
   gap: 5px;
   width: 100%;
@@ -70,7 +75,7 @@ const RecycleBtn = styled(Btn)`
   }
 `;
 
-const UserBtnsActions = styled.div`
+export const UserBtnsActions = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -86,7 +91,7 @@ function UserHome() {
   const { setUserPage } = useContext(UserContext);
   return (
     <UserHomeWrapper>
-      <PointsCard />
+      <PointsCard onSelect={setUserPage}/>
       <RecycleBtnContainer>
         <RecycleBtn
           type="button"
